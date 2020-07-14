@@ -5,11 +5,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
 
-class BasicApplication : Application(), ViewModelStoreOwner {
+open class BasicApplication : Application(), ViewModelStoreOwner {
 
-    protected lateinit var mViewModelStore: ViewModelStore
+    //全局应用范围内的ViewModelStore
+    private lateinit var mViewModelStore: ViewModelStore
 
-     val mViewModelFactory by lazy {
+    val mViewModelFactory by lazy {
         ViewModelProvider.AndroidViewModelFactory.getInstance(this)
     }
 
