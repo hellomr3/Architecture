@@ -16,7 +16,8 @@ class DataBindingConfig(
      * 并在BasicActivity的onCreate中
      * 将参数绑定到页面
      */
-    fun addBindingParams(variableId: Int, param: Any) {
+    fun addBindingParams(variableId: Int, param: Any): DataBindingConfig {
         bindingParams.put(variableId, param)
+        return this
     }
 }

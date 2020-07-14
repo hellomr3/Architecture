@@ -11,23 +11,17 @@ import com.looptry.architecture.application.BasicApplication
 
 abstract class BasicActivity : AppCompatActivity() {
 
-
-    protected val mViewModelProvider: ViewModelProvider by lazy {
+    val mViewModelProvider: ViewModelProvider by lazy {
         ViewModelProvider(this)
     }
 
     //binding
     protected lateinit var mBinding: ViewDataBinding
 
-    //viewModel
-
-    abstract fun initViewModel()
-
     abstract fun getDataBindingConfig(): DataBindingConfig
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initViewModel()
         initBinding()
     }
 
@@ -48,7 +42,7 @@ abstract class BasicActivity : AppCompatActivity() {
     /**
      * 获取Activity范围内的ViewModel
      */
-     inline fun <reified T : ViewModel> getActivityViewModel(): T {
+    inline fun <reified T : ViewModel> getActivityViewModel(): T {
         return mViewModelProvider.get(T::class.java)
     }
 

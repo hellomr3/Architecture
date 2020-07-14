@@ -24,12 +24,8 @@ abstract class BasicFragment : Fragment() {
         mActivity = context
     }
 
-    //viewModel
-    abstract fun initViewModel()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initViewModel()
     }
 
     //dataBinding
