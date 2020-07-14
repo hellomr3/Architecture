@@ -4,8 +4,8 @@ import android.util.SparseArray
 import androidx.lifecycle.ViewModel
 
 class DataBindingConfig(
-    val layout: Int,
     val variableId: Int,
+    val layoutId: Int,
     val stateViewModel: ViewModel
 ) {
     //绑定页面上更多的参数

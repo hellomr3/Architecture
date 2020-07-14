@@ -30,7 +30,7 @@ abstract class BasicActivity : AppCompatActivity() {
      */
     private fun initBinding() {
         val config = getDataBindingConfig()
-        val binding: ViewDataBinding = DataBindingUtil.setContentView(this, config.layout)
+        val binding: ViewDataBinding = DataBindingUtil.setContentView(this, config.layoutId)
         binding.lifecycleOwner = this
         binding.setVariable(config.variableId, config.stateViewModel)
         config.bindingParams.forEach { key, value ->

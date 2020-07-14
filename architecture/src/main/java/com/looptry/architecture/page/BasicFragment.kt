@@ -47,7 +47,7 @@ abstract class BasicFragment : Fragment() {
     ) {
         val config = getDataBindingConfig()
         val binding: ViewDataBinding =
-            DataBindingUtil.inflate(inflater, config.layout, container, false)
+            DataBindingUtil.inflate(inflater, config.layoutId, container, false)
         binding.setVariable(config.variableId, config.stateViewModel)
         binding.lifecycleOwner = this.viewLifecycleOwner
         config.bindingParams.forEach { key, value ->
