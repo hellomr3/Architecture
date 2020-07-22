@@ -10,11 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.looptry.architecture.application.BasicApplication
 
 abstract class BasicActivity : AppCompatActivity() {
-
-    val mViewModelProvider: ViewModelProvider by lazy {
-        ViewModelProvider(this)
-    }
-
     //binding
     protected lateinit var mBinding: ViewDataBinding
 
@@ -39,22 +34,4 @@ abstract class BasicActivity : AppCompatActivity() {
         mBinding = binding
     }
 
-    /**
-     * 获取Activity范围内的ViewModel
-     */
-    inline fun <reified T : ViewModel> getActivityViewModel(): T {
-        return mViewModelProvider.get(T::class.java)
-    }
-
-    /**
-     * 获取App范围内的ViewModel
-     */
-    inline fun <reified T : ViewModel> getAppViewModel(): T {
-        check(applicationContext is BasicApplication)
-        val application = applicationContext as BasicApplication
-        return ViewModelProvider(
-            application.viewModelStore,
-            application.mViewModelFactory
-        ).get(T::class.java)
-    }
 }

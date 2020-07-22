@@ -55,32 +55,4 @@ abstract class BasicFragment : Fragment() {
         }
         mBinding = binding
     }
-
-    //fragment provider
-    val mProvider by lazy {
-        ViewModelProvider(this)
-    }
-
-    inline fun <reified T : ViewModel> getFragmentViewModel(): T {
-        return mProvider.get(T::class.java)
-    }
-
-    //fragment.parentActivity provider
-    val mActivityProvider by lazy {
-        ViewModelProvider(mActivity)
-    }
-
-    inline fun <reified T : ViewModel> getActivityViewModel(): T {
-        return mActivityProvider.get(T::class.java)
-    }
-
-    inline fun <reified T : ViewModel> getAppViewModel(): T {
-        check(mActivity.applicationContext is BasicApplication)
-        val application = mActivity.applicationContext as BasicApplication
-        return ViewModelProvider(
-            application.viewModelStore,
-            application.mViewModelFactory
-        ).get(T::class.java)
-    }
-
 }
