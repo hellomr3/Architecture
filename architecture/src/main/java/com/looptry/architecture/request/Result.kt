@@ -11,7 +11,9 @@ sealed class Result<T> {
 
     data class OK<T>(val data: T) : Result<T>()
 
-    data class Failure(val throwable: Throwable) : Result<Nothing>()
+    data class Exception(val throwable: Throwable) : Result<Nothing>()
+
+    data class Failure(val msg: String) : Result<Nothing>()
 }
 
 inline fun <reified T> Result<T>.doOnSuccess(block: (T) -> Unit) {
@@ -20,8 +22,14 @@ inline fun <reified T> Result<T>.doOnSuccess(block: (T) -> Unit) {
     }
 }
 
-inline fun <reified T> Result<T>.doOnFailure(block: (Throwable) -> Unit) {
-    if (this is Result.Failure) {
+inline fun <reified T> Result<T>.doOnException(block: (Throwable) -> Unit) {
+    if (this is Result.Exception) {
         block.invoke(this.throwable)
+    }
+}
+
+inline fun <reified T> Result<T>.doOnFailure(block: (String) -> Unit) {
+    if (this is Result.Failure) {
+        block.invoke(this.msg)
     }
 }
