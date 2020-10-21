@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -54,3 +55,21 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
 }
+
+apply plugin: 'maven'
+
+def localRepoURL = "file://" + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+uploadArchives {
+    print(localRepoURL)
+    repositories {
+        mavenDeployer {
+            pom.groupId = "com.looptry.architecture"
+            pom.artifactId = "dev"
+            pom.version = "v1.0.8"
+            pom.packaging = 'jar'
+            repository(url: localRepoURL)
+        }
+    }
+}
+////每次build完成后执行
+//build.finalizedBy(uplodadArchives)

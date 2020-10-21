@@ -23,6 +23,7 @@ inline fun <T> EventLiveData<T>.observeEvent(
     owner: LifecycleOwner,
     crossinline onChanged: (T) -> Unit
 ): Observer<Event<T>> {
+
     val wrappedObserver = Observer<Event<T>> { t ->
         t.getContentIfNotHandle()?.let { data ->
             onChanged.invoke(data)
@@ -32,4 +33,16 @@ inline fun <T> EventLiveData<T>.observeEvent(
     return wrappedObserver
 }
 
-fun <T> T.toEvent() = Event(this)
+@MainThread
+inline fun <T> EventLiveData<T>.peekContent(
+    owner: LifecycleOwner,
+    crossinline block: (T) -> Unit
+): Observer<Event<T>> {
+    val wrapperObserver = Observer<Event<T>> { t ->
+        t.peekContent().also {
+            block.invoke(it)
+        }
+    }
+    observe(owner, wrapperObserver)
+    return wrapperObserver
+}
