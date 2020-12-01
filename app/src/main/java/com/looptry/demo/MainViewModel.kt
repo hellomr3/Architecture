@@ -1,4 +1,4 @@
-package com.looptry.architecture
+package com.looptry.demo
 
 import androidx.lifecycle.ViewModel
 

@@ -7,7 +7,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.looptry.architecture"
+        applicationId "com.looptry.demo"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -27,8 +27,18 @@ android {
         dataBinding = true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    packagingOptions {
+        exclude('META-INF/*')
+        exclude("classes.dex")
     }
 }
 

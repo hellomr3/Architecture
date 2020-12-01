@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.looptry.architecture.MainViewModel" />
+            type="com.looptry.demo.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

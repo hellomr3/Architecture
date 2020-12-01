@@ -10,9 +10,6 @@ import androidx.core.util.forEach
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.looptry.architecture.application.BasicApplication
 
 abstract class BasicFragment : Fragment() {
 
@@ -30,6 +27,7 @@ abstract class BasicFragment : Fragment() {
 
     //dataBinding
     protected lateinit var mBinding: ViewDataBinding
+
     abstract fun getDataBindingConfig(): DataBindingConfig
 
     override fun onCreateView(

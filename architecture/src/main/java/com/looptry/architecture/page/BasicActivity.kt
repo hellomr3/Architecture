@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.forEach
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.looptry.architecture.application.BasicApplication
 
 abstract class BasicActivity : AppCompatActivity() {
     //binding
