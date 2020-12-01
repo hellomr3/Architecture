@@ -5,6 +5,8 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
 
     defaultConfig {
         applicationId "com.looptry.demo"
