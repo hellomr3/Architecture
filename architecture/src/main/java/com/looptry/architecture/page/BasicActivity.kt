@@ -28,6 +28,7 @@ abstract class BasicActivity : AppCompatActivity() {
         config.bindingParams.forEach { key, value ->
             binding.setVariable(key, value)
         }
+        binding.executePendingBindings()
         mBinding = binding
     }
 

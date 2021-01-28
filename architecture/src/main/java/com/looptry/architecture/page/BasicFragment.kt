@@ -51,6 +51,7 @@ abstract class BasicFragment : Fragment() {
         config.bindingParams.forEach { key, value ->
             binding.setVariable(key, value)
         }
+        binding.executePendingBindings()
         mBinding = binding
     }
 }
