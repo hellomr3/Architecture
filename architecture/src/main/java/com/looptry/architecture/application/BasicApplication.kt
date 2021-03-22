@@ -10,10 +10,6 @@ open class BasicApplication : Application(), ViewModelStoreOwner {
     //全局应用范围内的ViewModelStore
     private lateinit var mViewModelStore: ViewModelStore
 
-    val mViewModelFactory by lazy {
-        ViewModelProvider.AndroidViewModelFactory.getInstance(this)
-    }
-
     override fun onCreate() {
         super.onCreate()
         mViewModelStore = ViewModelStore()

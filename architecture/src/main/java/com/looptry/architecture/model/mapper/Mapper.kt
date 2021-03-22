@@ -7,6 +7,7 @@ package com.looptry.architecture.model.mapper
  * Modify By:
  * Modify Date:
  */
+@FunctionalInterface
 interface Mapper<I, O> {
     fun map(input: I): O
 }

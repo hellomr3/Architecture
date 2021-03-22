@@ -13,8 +13,9 @@ import kotlin.coroutines.CoroutineContext
  * Modify By:
  * Modify Date:
  */
-fun ViewModel.launchAsync(
+fun CoroutineScope.launchAsync(
     context: CoroutineContext = Dispatchers.Main,
+    start: CoroutineStart = CoroutineStart.LAZY,
     onStart: (() -> Unit)? = null,
     onFailure: ((Throwable) -> Unit)? = null,
     onFinished: (() -> Unit)? = null,
@@ -24,7 +25,7 @@ fun ViewModel.launchAsync(
     val handler = CoroutineExceptionHandler { _, throwable ->
         onFailure?.invoke(throwable)
     }
-    this.viewModelScope.launch(context + handler) {
+    this.launch(context + handler, start = start) {
         try {
             onStart?.invoke()
             block.invoke(this)

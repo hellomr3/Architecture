@@ -16,20 +16,37 @@ sealed class Result<out T> {
     data class Failure(val msg: String?) : Result<Nothing>()
 }
 
-inline fun <reified T> Result<T>.doOnSuccess(block: (T) -> Unit) {
+inline fun <reified T> Result<T?>.doOnSuccess(block: (T) -> Unit) {
     if (this is Result.OK) {
-        block.invoke(this.data)
+        this.data?.run { block.invoke(this) }
     }
 }
 
-inline fun <reified T> Result<T>.doOnException(block: (Throwable?) -> Unit) {
+inline fun <reified T> Result<T?>.doOnException(block: (Throwable?) -> Unit) {
     if (this is Result.Exception) {
         block.invoke(this.throwable)
     }
 }
 
-inline fun <reified T> Result<T>.doOnFailure(block: (String?) -> Unit) {
+inline fun <reified T> Result<T?>.doOnFailure(block: (String?) -> Unit) {
     if (this is Result.Failure) {
         block.invoke(this.msg)
+    }
+}
+
+/*
+提供Result转化操作
+ */
+fun <T, P> Result<T?>.map(block: (T?) -> P): Result<P> {
+    return when (this) {
+        is Result.OK -> {
+            Result.OK(block.invoke(this.data))
+        }
+        is Result.Failure -> {
+            this
+        }
+        is Result.Exception -> {
+            this
+        }
     }
 }
