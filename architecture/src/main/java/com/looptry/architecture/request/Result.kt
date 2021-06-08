@@ -50,3 +50,17 @@ fun <T, P> Result<T?>.map(block: (T?) -> P): Result<P> {
         }
     }
 }
+
+fun <T> Result<T>.getOrNull(): T? {
+    return when (this) {
+        is Result.OK -> {
+            this.data
+        }
+        is Result.Failure -> {
+            null
+        }
+        is Result.Exception -> {
+            null
+        }
+    }
+}
